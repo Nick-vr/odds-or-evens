@@ -1,14 +1,21 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class OddsAndEvens {
     public static String name;
     public static char oddsOrEvens;
+    public static int amountOfPlayerFingers;
+    public static int amountOfComputerFingers;
 
     public static void main(String[] args) {
         greeting();
         askName();
         askOddsOrEvens();
         displayPlayersChoice();
+        displayLines();
+        askHowManyPlayerFingers();
+        howManyComputerFingers();
+        displayLines();
+        sumOddOrEven();
         displayLines();
     }
 
@@ -39,6 +46,31 @@ public class OddsAndEvens {
             System.out.println(name + " has picked evens! The computer will be odds.");
         } else {
             System.out.println(name + " didn't pick a valid option (O or E)");
+        }
+    }
+
+    public static void askHowManyPlayerFingers() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("How many \"fingers\" do you put out?");
+        amountOfPlayerFingers = input.nextInt();
+    }
+
+    public static void howManyComputerFingers() {
+        Random rand = new Random();
+        amountOfComputerFingers = rand.nextInt(6);
+        System.out.println("The computer plays " + amountOfComputerFingers + " fingers.");
+    }
+
+    public static void sumOddOrEven() {
+        int sum = amountOfPlayerFingers + amountOfComputerFingers;
+        boolean oddOrEven = sum % 2 == 0;
+
+        System.out.println(amountOfPlayerFingers + " + " + amountOfComputerFingers + " = " + sum);
+
+        if (oddOrEven) {
+            System.out.println(sum + " is ...even!");
+        } else {
+            System.out.println(sum + " is ...odd!");
         }
     }
 }
